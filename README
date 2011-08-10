@@ -1,0 +1,9 @@
+Django Project Template
+
+
+* lib/ contains modified third party modules and ones that aren't in requirements.txt
+
+After cloning:
+* create database mysql> create database <name> character set utf8;
+* change SECRET_KEY in settings.py, you can generate a new one using django-admin.py
+* change initial_data.json to include the correct url instead of staging.example.com etc.

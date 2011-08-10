@@ -1,0 +1,7 @@
+*.pyc
+*.DS_Store
+.junk
+pip-log.txt
+*.log
+build
+static/admin

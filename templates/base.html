@@ -1,0 +1,68 @@
+{% load compress i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    
+    <meta name="description" content="{% block meta-description %}{{meta_description|safe|striptags}}{% endblock %}">
+    <meta name="keywords" content="{% block meta-keywords %}{{meta_keywords|safe|striptags}}{% endblock %}">
+    
+    <link rel="icon" href="{{ MEDIA_URL }}img/favicon.png" />
+    
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/fonts.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/960/reset.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/960/text.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/960/960.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/base.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}css/prettyLoader.css" media="screen" />
+        <link rel='Stylesheet' type='text/css' href='{{ MEDIA_URL}}css/jquery.foobar.css' />
+    {% endblock %}
+
+    {% block script %}
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery-ui-1.8.7.custom.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            {% include 'fragments/jquery.prettyLoader.html' %}
+        </script>
+        <script type='text/javascript' src='{{ MEDIA_URL }}js/jquery/jquery.foobar.1.1.min.js'></script>    
+    {% endblock %}
+</head>
+
+<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+    {% block content %}{% endblock %}
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.prettyLoader({
+                bind_to_ajax: true, 
+                delay: false,
+                offset_top: 13, 
+                offset_left: 10 
+            });
+        });
+        
+        {% if messages %}
+            // Notification plugin
+            $.foobar({
+                "positioning" : "fixed",
+                "backgroundColor": "#6c9e00",
+                "display" : "delayed",
+                "displayDelay" : 1000,
+                "positionClose" : 'right',
+                "collapsedButtonHeight": 0,
+                "messages": [ 
+                    {% for message in messages %}
+                        '{{ message }}'{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ],
+              });
+        {% endif %}
+    </script>
+    
+    {% block end_script %}{% endblock %}
+</body>
+</html>
