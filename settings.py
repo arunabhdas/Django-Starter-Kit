@@ -23,10 +23,10 @@ INTERNAL_IPS                        = ('127.0.0.1',)
 LANGUAGE_CODE                       = 'en-us'
 SECRET_KEY                          = '4n7tg$vmh^y4p7z4tahfa8x#r!_j7g580m*=mh&dj!-jyo6f%x' # Todo: Change this
 TIME_ZONE                           = 'Etc/UTC'
-USE_ETAGS                           = True
+USE_ETAGS                           = False
 USE_I18N                            = False
 USE_L10N                            = False
-PREPEND_WWW                         = True
+PREPEND_WWW                         = False
 ROOT_URLCONF                        = 'urls'
 ADMIN_SECRET                        = 'cloudshuffle'
 DATABASE_BACKUP_ROOT                = '~/backups/'
