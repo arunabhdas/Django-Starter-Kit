@@ -7,22 +7,22 @@
 
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block meta-description %}{{meta_description|safe|striptags}}{% endblock %}">
     <meta name="keywords" content="{% block meta-keywords %}{{meta_keywords|safe|striptags}}{% endblock %}">
     <meta name="author" content="">
 
     <link rel="icon" href="{{ STATIC_URL }}img/favicon.png" />
 
-    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     {% block css_wrap %}
-        {% block css %}
+        {% compress css %}
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/bootstrap.min.css" media="screen" />
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/style.css" media="screen" />
-        {% endblock %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/jquery.noty.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/noty_theme_twitter.css" media="screen" />
+        {% endcompress %}
+
+        {% block css %}{% endblock %}
     {% endblock %}
 
     {% analytical_head_bottom %}
@@ -32,22 +32,27 @@
     {% analytical_body_top %}
 
     {% block content_wrap %}
-        <div class="topbar">
-          <div class="topbar-inner">
+        {% block header %}
+        <div class="navbar navbar-fixed-top">
+          <div class="navbar-inner">
             <div class="container">
-              <a class="brand" href="/">Project</a>
-              <ul class="nav">
-                {% if request.user.is_authenticated %}
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Logout</a></li>
-                {% else %}
-                    <li><a href="#">Sign in</a></li>
-                    <li><a href="#">Create Account</a></li>
-                {% endif %}
-              </ul>
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="#">Project name</a>
+              <div class="nav-collapse">
+                <ul class="nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
             </div>
           </div>
         </div>
+        {% endblock %}
 
         <div class="container">
             {% block content %}{% endblock %}
@@ -59,26 +64,40 @@
         </div>
     {% endblock %}
 
-
     {% block js_wrap %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        {% compress js %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.prettyLoader.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.noty.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/core.js"></script>
+        {% endcompress %}
+
         {% block js %}{% endblock %}
     {% endblock %}
 
     <script type="text/javascript">
-        {% comment %}<!--
         $(document).ready(function(){
             $.prettyLoader({
-                bind_to_ajax: true,
-                delay: false,
-                offset_top: 13,
-                offset_left: 10
+                loader: '{{ STATIC_URL }}img/prettyLoader/ajax-loader.gif',
             });
         });
-        -->{% endcomment %}
+
+        // Notification plugin
         {% if messages %}
-            // Notification plugin
+            noty({
+                layout : 'top',
+                theme : 'noty_theme_twitter',
+                type : '{% if message.tags %}{{ message.tags }}{% else %}notification{% endif %}',
+                text : '{% for msg in messages %}{{ msg }}{% if not forloop.last %}<br />{% endif %}{% endfor %}',
+                timeout : 1000,
+                closeButton: true,
+            });
         {% endif %}
     </script>
 
