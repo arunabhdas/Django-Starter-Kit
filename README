@@ -1,4 +1,18 @@
 Django Project Template
+=========================
+
+* Uses Django 1.4
+* Collects static and media into public/{static,media} respectively.
+* Django admin activated by default.
+* Django timezone setting changed to UTC for sanity.
+* HTML 5 base template with simple 404 and 500 error templates.
+* Includes bootstrap, jquery in base template.
+* Encourages the use of local_settings.py and accompanying __local_settings.py template.
+* Encourages the use of virtualenv and virtualenvwrapper.
+* Encourages the use of pip and requirements.txt.
+* Encourages the use of git.
+* Includes a .gitignore for the usual junk.
+
 
 After cloning:
 * create database mysql> create database <name> character set utf8;

@@ -1,8 +1,7 @@
-{% load analytical compress i18n  %}
+{% load analytical compress  %}
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     {% analytical_head_top %}
 
@@ -19,18 +18,11 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    {% block css %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/style.css" media="screen" />
-    {% endblock %}
-
-    {% block js %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.4.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-alerts.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-tabs.js"></script>
+    {% block css_wrap %}
+        {% block css %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/bootstrap.min.css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}css/style.css" media="screen" />
+        {% endblock %}
     {% endblock %}
 
     {% analytical_head_bottom %}
@@ -46,11 +38,11 @@
               <a class="brand" href="/">Project</a>
               <ul class="nav">
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url userena_profile_detail request.user.username %}">Dashboard</a></li>
-                    <li><a href="{% url userena_signout %}">Logout</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url userena_signin %}">Sign in</a></li>
-                    <li><a href="{% url userena_signup %}">Create Account</a></li>
+                    <li><a href="#">Sign in</a></li>
+                    <li><a href="#">Create Account</a></li>
                 {% endif %}
               </ul>
             </div>
@@ -67,6 +59,12 @@
         </div>
     {% endblock %}
 
+
+    {% block js_wrap %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        {% block js %}{% endblock %}
+    {% endblock %}
 
     <script type="text/javascript">
         {% comment %}<!--

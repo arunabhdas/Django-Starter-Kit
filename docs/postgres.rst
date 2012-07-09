@@ -32,9 +32,9 @@ Run the following script to install a clean Postgres 9.1 install with PostGIS te
     echo "Done"
 
     sudo su - postgres
-    createuser --createdb fmr
-    # create new db fmr, which will contain our application schema.
-    createdb -T template_postgis fmr
+    createuser --createdb dummy
+    # create new db dummy, which will contain our application schema.
+    createdb -T template_postgis dummy
 
 GUI tools, not needed on server
 
@@ -62,32 +62,32 @@ You can replace ubuntu, or whatever user you're using.
 You can now just type in $>psql and it will automatically login to postgres using user 'ubuntu' and database of the same name 'ubuntu'.
 You can switch database by typing $>psql template1
 
-Finally we'll create an FMR  database and user
+Finally we'll create an dummy  database and user
 
-    $> sudo -u postgres createuser -P fmr
-    could not change directory to "/home/sid/Projects/FindMyRep/find-my-rep"
+    $> sudo -u postgres createuser -P dummy
+    could not change directory to "/home/sid/Projects/dummy"
     Enter password for new role:
     Enter it again:
     Shall the new role be a superuser? (y/n) n
     Shall the new role be allowed to create databases? (y/n) n
     Shall the new role be allowed to create more new roles? (y/n) n
 
-Now let's create a DB(named 'fmr') for the project and set the owner the role 'fmr'
+Now let's create a DB(named 'dummy') for the project and set the owner the role 'dummy'
     $>psql
-    ubuntu=# CREATE DATABASE fmr OWNER fmr ENCODING 'UTF8';
+    ubuntu=# CREATE DATABASE dummy OWNER dummy ENCODING 'UTF8';
 
-Next step is to make sure we're using md5 authentication for our 'fmr' role.
+Next step is to make sure we're using md5 authentication for our 'dummy' role.
 
     sudo nano /etc/postgresql/8.4/main/pg_hba.conf
 
-Add the line for fmr below the default user. Eg.
+Add the line for dummy below the default user. Eg.
 
     local   all         postgres                          ident
-    local   all         fmr                               md5
+    local   all         dummy                               md5
 
     $> sudo service postgresql restart
 
-Now you should be able to syncdb with fmr/fmr/fmr as the database/username/password.
+Now you should be able to syncdb with the database/username/password.
 
 
 External requirements for making it easier to install modules like mysql + PIL inside virtualenv

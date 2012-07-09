@@ -1,4 +1,4 @@
-- Use twitter bootstrap, see hubspot, grader builder
+- Convert this to a project template https://docs.djangoproject.com/en/dev/ref/django-admin/#startproject-projectname-destination
 - Cleanup fabfile nginx conf.
 
 - add jquery notification
