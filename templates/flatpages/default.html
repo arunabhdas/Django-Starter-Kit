@@ -1,4 +1,6 @@
-{% extends 'home/base.html' %}
+{% extends 'base.html' %}
 {% load compress i18n %}
 
-{% block content %}{% endblock %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}{{ flatpage.content }}{% endblock %}

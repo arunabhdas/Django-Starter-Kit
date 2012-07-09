@@ -2,20 +2,22 @@
 from settings import *
 
 
-
 # Environment
 # ===========
-SITE_ID                 = 1
-DEBUG                   = False
-TEMPLATE_DEBUG          = DEBUG
+SITE_ID                             = 1
+DEBUG                               = True
+TEMPLATE_DEBUG                      = DEBUG
 
+# Other django settings
+# =====================
+ADMIN_SECRET                        = ''
 
 # Databases
 # ==========
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'explore',
+            'NAME': 'garnishbar',
             'USER': 'root',
             'PASSWORD': 'root',
             'HOST': '',
@@ -29,4 +31,4 @@ DATABASES = {
 
 # Emails
 # =======
-EMAIL_BACKEND           = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND                       = 'django.core.mail.backends.console.EmailBackend'

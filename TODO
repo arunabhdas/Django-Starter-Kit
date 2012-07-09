@@ -1,0 +1,16 @@
+- Use twitter bootstrap, see hubspot, grader builder
+- Middleware for email address instead
+- Cleanup fabfile nginx conf.
+- Install django-reg
+- install social-auth
+- add jquery notification
+- add ajax loader
+- add static file app. already added to settings.py
+- mediaurl -> static
+- UPDATE reqirements.
+- Move common to "main".
+- solr multicore
+
+
+- django-annoying==0.7.6
+

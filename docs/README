@@ -1,9 +1,0 @@
-# Server Details
-
-Live:
-ssh -p <port> <user>@<ip>
-pass: ____________
-
-Stage:
-ssh -p <port> <user>@<ip>
-pass: ____________

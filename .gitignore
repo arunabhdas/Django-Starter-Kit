@@ -1,7 +1,12 @@
 *.pyc
+*.log
 *.DS_Store
 .junk
 pip-log.txt
-*.log
 build
-static/admin
+.pydevproject
+.settings*
+.project
+/local_settings.py
+/media/
+/static/

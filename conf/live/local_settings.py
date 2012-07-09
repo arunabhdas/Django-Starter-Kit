@@ -1,11 +1,10 @@
-# Local dev server.
 from settings import *
 
 
 # Environment
 # ===========
 # Admin user: root
-# Admin pass: _________
+# Admin pass: _____________
 SITE_ID = 3
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -16,9 +15,9 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
+            'NAME': '_______',
+            'USER': 'root',
+            'PASSWORD': 'root',
             'HOST': '',
             'PORT': '',
             'OPTIONS': {
