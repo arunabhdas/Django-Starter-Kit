@@ -17,7 +17,7 @@ ADMIN_SECRET                        = ''
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'garnishbar',
+            'NAME': 'explore',
             'USER': 'root',
             'PASSWORD': 'root',
             'HOST': '',

@@ -44,8 +44,19 @@ ROOT_URLCONF                        = 'urls'
 
 # Databases
 # ==========
-# over ride in local_settings
-DATABASES                           = {}
+DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': '',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+            'OPTIONS': {
+                "init_command": "SET storage_engine=INNODB",
+            }
+        }
+    }
 
 # Email settings
 # ===============
@@ -75,6 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
 
     'analytical',
+    'annoying',
     'compressor',
     'django_extensions',
     'gunicorn',
@@ -97,7 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
-    'main.middlewares.SetCookieForProtectedEnvironment',
+    'main.middlewares.AdminSecretMiddleware',
     'main.middlewares.ExceptionUserInfoMiddleware',
 )
 
@@ -166,6 +178,12 @@ LOGIN_REDIRECT_URL                  = '/'
 LOGIN_URL                           = '/accounts/login/'
 LOGOUT_URL                          = '/accounts/logout/'
 AUTH_PROFILE_MODULE                 = 'accounts.UserProfile'
+
+#--------------------
+# django-social-auth
+#--------------------
+SOCIAL_AUTH_ERROR_KEY               = 'social_errors'
+#SOCIAL_AUTH_PIPELINE                = ()
 
 
 # Misc.
