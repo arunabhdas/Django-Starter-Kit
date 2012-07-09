@@ -37,11 +37,13 @@ INTERNAL_IPS                        = ('127.0.0.1',)
 LANGUAGE_CODE                       = 'en-us'
 SECRET_KEY                          = ''
 TIME_ZONE                           = 'UTC'
+USE_TZ                              = True
 USE_ETAGS                           = False
 USE_I18N                            = False
 USE_L10N                            = False
 PREPEND_WWW                         = False
 ROOT_URLCONF                        = 'urls'
+#WSGI_APPLICATION                   = 'wsgi.application'
 
 # Databases
 # ==========
@@ -144,9 +146,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
